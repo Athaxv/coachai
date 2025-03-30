@@ -1,4 +1,5 @@
 "use client"
+import { BlurFade } from '@/components/magicui/blur-fade';
 import { Button } from '@/components/ui/button';
 import { useUser } from '@stackframe/stack'
 import Image from 'next/image';
@@ -40,10 +41,12 @@ function FeatureAssistant() {
         </div>
         <div className='grid grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 gap-10 mt-10'>
             {ExpertsList.map((item, index) => (
-                <div key={index} className='p-3 bg-secondary rounded-3xl flex items-center flex-col justify-center'>
+                <BlurFade delay={0.25} inView key={index}>
+                <div className='p-3 bg-secondary rounded-3xl flex items-center flex-col justify-center'>
                     <Image className='bg-transparent' src={item.icon} alt={item.name} height={120} width={120} />
                     <h1 className='mt-2'>{item.name}</h1>
                 </div>
+                </BlurFade>
             ))}
         </div>
     </div>
