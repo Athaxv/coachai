@@ -34,6 +34,8 @@ function UserInputDialog({children, ExpertsList}) {
     const [topic, setTopic] = useState()
     const createDiscussionRoom = useMutation(api.DiscussionRoom.CreateNewroom)
     const [loading, setLoading] = useState(false)
+    const [openDialog, setOpenDialog] = useState(false)
+
     const onClickNext = async () => {
         setLoading(true)
         const result = await createDiscussionRoom({
@@ -41,11 +43,13 @@ function UserInputDialog({children, ExpertsList}) {
             CoachingExpert: ExpertsList?.name,
             expertName: selectedExpert
         })
+        console.log(result)
         setLoading(false)
+        setOpenDialog(false)
     }
   return (
     <div>
-        <Dialog>
+        <Dialog open={openDialog} onOpenDialog={setOpenDialog}>
   <DialogTrigger>{children}</DialogTrigger>
   <DialogContent>
     <DialogHeader>
